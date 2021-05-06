@@ -2,9 +2,10 @@ import React from "react";
 import { Nav, Navbar } from "react-bootstrap";
 
 const Header = (props: any) => {
+  console.log(props);
   return (
     <>
-      <Navbar fixed="top" bg="primary" variant="dark">
+      <Navbar sticky="top" fixed="top" bg="primary" variant="dark">
         <Navbar.Brand href="#home">Navbar</Navbar.Brand>
         <Nav className="mr-auto">
           <Nav.Link href="#home">Home</Nav.Link>

@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { Card, Nav, Navbar } from "react-bootstrap";
+import { Button, Card, Nav, Navbar } from "react-bootstrap";
+import { useHistory } from "react-router";
 import Header from "../comonents/Header";
 
 interface ITodo {
@@ -9,6 +10,7 @@ interface ITodo {
 }
 
 const Home = () => {
+  const history = useHistory();
   const initialValue: ITodo[] = [
     {
       id: 0,
@@ -29,7 +31,7 @@ const Home = () => {
   }, []);
 
   const goToInputFormPage = () => {
-    //go to form page route
+    history.push("/add");
   };
 
   return (
@@ -41,6 +43,14 @@ const Home = () => {
               <Card.Body>
                 <Card.Text>{todo.message}</Card.Text>
               </Card.Body>
+              <Button
+                onClick={() => {
+                  history.push(`/edit/${todo.id}`);
+                }}
+                variant="primary"
+              >
+                Edit
+              </Button>
             </Card>
           ))}
 
