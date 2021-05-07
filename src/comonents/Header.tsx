@@ -2,7 +2,6 @@ import React from "react";
 import { Nav, Navbar } from "react-bootstrap";
 
 const Header = (props: any) => {
-  console.log(props);
   return (
     <>
       <Navbar sticky="top" fixed="top" bg="primary" variant="dark">

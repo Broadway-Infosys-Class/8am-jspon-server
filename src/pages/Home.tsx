@@ -23,7 +23,6 @@ const Home = () => {
   const getTodos = async () => {
     let response = await axios.get("http://localhost:4000/todos");
     setTodos(response.data);
-    console.log(response.data);
   };
 
   useEffect(() => {
@@ -32,6 +31,11 @@ const Home = () => {
 
   const goToInputFormPage = () => {
     history.push("/add");
+  };
+
+  const deleteTodo = async (id: number) => {
+    let response = await axios.delete(`http://localhost:4000/todos/${id}`);
+    getTodos();
   };
 
   return (
@@ -50,6 +54,15 @@ const Home = () => {
                 variant="primary"
               >
                 Edit
+              </Button>
+
+              <Button
+                onClick={() => {
+                  deleteTodo(todo.id);
+                }}
+                variant="warning"
+              >
+                Delete
               </Button>
             </Card>
           ))}

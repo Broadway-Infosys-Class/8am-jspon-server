@@ -5,14 +5,6 @@
       "message": "This is my Todo"
     },
     {
-      "id": 2,
-      "message": "This is my New Todo"
-    },
-    {
-      "message": "My Edited Todo message",
-      "id": 3
-    },
-    {
       "message": "My new message",
       "id": 4
     }

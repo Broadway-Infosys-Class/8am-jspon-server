@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Button, Form } from "react-bootstrap";
-import { convertCompilerOptionsFromJson } from "typescript";
+import { useHistory } from "react-router";
 import Header from "../comonents/Header";
 
 interface ITodo {
@@ -10,8 +10,8 @@ interface ITodo {
 }
 
 const Edit = (props: any) => {
+  const history = useHistory();
   const [myTodo, setMyTodo] = useState({} as ITodo);
-  console.log(props);
   const id = props.match.params.id;
 
   const getTodo = async () => {
@@ -24,14 +24,25 @@ const Edit = (props: any) => {
     getTodo();
   }, []);
 
-  const handleInputChange = () => {};
+  const handleInputChange = (event: any) => {
+    setMyTodo({
+      ...myTodo,
+      message: event.target.value,
+    });
+  };
 
-  const handleSubmit = () => {};
+  const handleSubmit = async () => {
+    let response = await axios.patch(
+      `http://localhost:4000/todos/${id}`,
+      myTodo
+    );
+    history.push("/");
+  };
   return (
     <Header>
       <h3> Welcome to todo edit page</h3>
 
-      <Form.Group controlId="formMessageTodo">
+      <Form.Group>
         <Form.Label>Message</Form.Label>
         <Form.Control
           name="message"
@@ -44,7 +55,7 @@ const Edit = (props: any) => {
       </Form.Group>
 
       <Button onClick={handleSubmit} variant="primary">
-        Add Message
+        Edit Message
       </Button>
     </Header>
   );
